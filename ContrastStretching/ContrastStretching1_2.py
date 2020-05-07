@@ -7,8 +7,6 @@ img = cv2.imread('contr2.jpg')
 height = np.size(img, 0)
 width = np.size(img, 1)
 
-print(img)
-
 #creamos el histograma
 color = ('b','g','r')
 maxC=0
@@ -18,18 +16,22 @@ for i, c in enumerate(color):
     plt.plot(histr, color = c)
     plt.xlim([0,256])
 
+#variables
 count=0
 a=0
-b=255
+b1=255
 c=0
 d=0
 
+#buscamos la mayor y menor escala de la imagen en el histograma
+#cuscamos el valor de "c"
 for i in histr:
     if (i[0]!=0):
         c=count
         count=0
         break;
     count=count+1
+#invertimos el histograma para buscar el mayor valor, "d"
 reversed_histr = histr[::-1]
 for i in reversed_histr:
     if (i[0]!=0):
@@ -37,12 +39,13 @@ for i in reversed_histr:
         count=0
         break;
     count=count+1
-print(a,b,c,d)
-# show the plotting graph of an image
+print(a,b1,c,d)
+
+#cabiamos los valores de los pixeles de la imagen usando la formula de Contrast Stretching
 for i in range (width-1):
     for j in range (height-1):
         b,g,r=img[i,j]
-        img[i][j]=(img[i][j]-c)*((b-a)/(d-c))+a
+        img[i][j]=(img[i][j]-c)*((b1-a)/(d-c))+a
 plt.plot(histr)
 cv2.imshow('image',img)
 plt.show()
@@ -52,4 +55,5 @@ img2 = cv2.imread('contr2.jpg',0)
 for i in range (15):
     for j in range (15):
         img2[i][j]=0
+#creamos la imagen con el outliner
 cv2.imwrite('new_copy.png',img2)
