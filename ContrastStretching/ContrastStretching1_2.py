@@ -24,7 +24,7 @@ c=0
 d=0
 
 #buscamos la mayor y menor escala de la imagen en el histograma
-#cuscamos el valor de "c"
+#buscamos el valor de "c"
 for i in histr:
     if (i[0]!=0):
         c=count
