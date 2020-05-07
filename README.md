@@ -1,0 +1,2 @@
+# ComputacionGrafica
+tareas de CG
